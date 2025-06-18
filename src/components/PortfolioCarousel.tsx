@@ -41,7 +41,7 @@ const projects: Project[] = [
   },
   {
     id: 3,
-    title: "AI-Powered Analytics Dashboard",
+    title: "AI-Powered Email Generator",
     description:
       "An intelligent analytics dashboard that provides real-time insights and predictive analytics for business decision making.",
     image: "/api/placeholder/600/400",

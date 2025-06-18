@@ -14,69 +14,92 @@ import ContactForm from "@/components/ContactForm";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
+
+const socials = [
+  {
+    linked: Linkedin,
+    link: "https://www.linkedin.com/in/freadstr/"
+  },
+  {
+    linked: Github,
+    link: "https://github.com/FreadSt"
+  },
+]
+
+const skills = [
+  "React",
+  "TypeScript",
+  "Next.js",
+  "Node.js",
+  "Docker",
+  "MongoDB",
+  "GraphQL",
+  "Tailwind CSS",
+  "Figma",
+];
+
+const services = [
+  {
+    title: "Web Development",
+    description:
+      "Building responsive, performant web applications with modern technologies and best practices.",
+    features: [
+      "React & Next.js",
+      "TypeScript",
+      "Performance Optimization",
+      "SEO & Accessibility",
+    ],
+  },
+  {
+    title: "Mobile Development",
+    description:
+      "Creating native and cross-platform mobile applications for iOS and Android.",
+    features: [
+      "React Native",
+      "Expo",
+      "Native iOS/Android",
+    ],
+  },
+  {
+    title: "API & Backend Integration",
+    description:
+      "While I'm a frontend-first developer, I can design and integrate REST APIs, configure backends and deploy fullstack apps.",
+    features: [
+      "Node.js & Express",
+      "Firebase / Appwrite",
+      "API integration & deployment",
+    ],
+  },
+  {
+    title: "Design to Code",
+    description:
+      "I translate Figma designs into real, usable interfaces — matching layout and behavior exactly, down to the last pixel.",
+    features: [
+      "Figma → Code conversion",
+      "Design Systems & Components",
+      "Accessibility (a11y)",
+      "Mobile-first approach",
+    ],
+  },
+];
 
 const Index = () => {
-  const skills = [
-    "React",
-    "TypeScript",
-    "Next.js",
-    "Node.js",
-    "Python",
-    "AWS",
-    "Docker",
-    "PostgreSQL",
-    "MongoDB",
-    "GraphQL",
-    "Tailwind CSS",
-    "Figma",
-  ];
 
-  const services = [
-    {
-      title: "Web Development",
-      description:
-        "Building responsive, performant web applications with modern technologies and best practices.",
-      features: [
-        "React & Next.js",
-        "TypeScript",
-        "Performance Optimization",
-        "SEO & Accessibility",
-      ],
-    },
-    {
-      title: "Mobile Development",
-      description:
-        "Creating native and cross-platform mobile applications for iOS and Android.",
-      features: [
-        "React Native",
-        "Flutter",
-        "Native iOS/Android",
-        "App Store Optimization",
-      ],
-    },
-    {
-      title: "Backend Development",
-      description:
-        "Designing scalable backend systems and APIs that power modern applications.",
-      features: [
-        "Node.js & Python",
-        "Database Design",
-        "API Development",
-        "Cloud Infrastructure",
-      ],
-    },
-    {
-      title: "UI/UX Design",
-      description:
-        "Crafting intuitive user experiences with beautiful, functional interface design.",
-      features: [
-        "User Research",
-        "Prototyping",
-        "Design Systems",
-        "Interaction Design",
-      ],
-    },
-  ];
+  const navitage = useNavigate()
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleContact = () => {
+    navitage('/contact')
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -114,9 +137,9 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <span className="text-gradient">Creative</span>
+            <span className="text-gradient">Kholiavko</span>
             <br />
-            Developer
+            Volodymyr
           </motion.h1>
 
           <motion.p
@@ -135,11 +158,11 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
           >
-            <Button size="lg" className="group">
+            <Button size="lg" className="group" onClick={handleContact}>
               <Mail className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               Get In Touch
             </Button>
-            <Button variant="outline" size="lg" className="group">
+            <Button variant="outline" size="lg" className="group" onClick={handleDownload}>
               <Download className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
               Download Resume
             </Button>
@@ -151,15 +174,15 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            {[Github, Linkedin, Twitter].map((Icon, index) => (
+            {socials.map((icon, index) => (
               <motion.a
                 key={index}
-                href="#"
+                href={icon.link}
                 className="text-muted-foreground hover:text-foreground transition-colors p-2"
                 whileHover={{ scale: 1.1, y: -2 }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
-                <Icon className="w-6 h-6" />
+                <icon.linked className="w-6 h-6" /> {/* Используем иконку из объекта */}
               </motion.a>
             ))}
           </motion.div>
@@ -196,7 +219,7 @@ const Index = () => {
                 <span className="text-gradient"> digital reality</span>
               </h2>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                With over 5 years of experience in full-stack development, I
+                With my significant experience in front-end development, I
                 specialize in creating exceptional digital experiences that
                 drive results. From concept to deployment, I handle every aspect
                 of the development process with precision and creativity.
@@ -220,20 +243,11 @@ const Index = () => {
               <div className="relative">
                 <div className="w-full h-96 bg-muted rounded-2xl overflow-hidden">
                   <img
-                    src="/api/placeholder/500/400"
+                    src="../../public/workspace.jpg"
                     alt="Developer workspace"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <motion.div
-                  className="absolute -bottom-6 -right-6 w-32 h-32 bg-foreground rounded-full opacity-10"
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
               </div>
             </ParallaxSection>
           </motion.div>
