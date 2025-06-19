@@ -109,10 +109,12 @@ const PortfolioCarousel = ({projects}: PortfolioCarouselProps) => {
 
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {projects[currentIndex].technologies.map((tech) => (
-                    <Badge variant="outline" className="text-xs">
-                      {tech}
-                    </Badge>
+                  {projects[currentIndex].technologies.map((tech, index) => (
+                    <div key={index}>
+                      <Badge variant="outline" className="text-xs">
+                        {tech}
+                      </Badge>
+                    </div>
                   ))}
                 </div>
 
