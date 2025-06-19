@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { ProjectsArr, services, skills, socials } from "@/lib/data.ts";
+import workspace from "@/../public/workspace.jpg"
 
 const Index = () => {
 
@@ -178,7 +179,7 @@ const Index = () => {
               <div className="relative">
                 <div className="w-full h-96 bg-muted rounded-2xl overflow-hidden">
                   <img
-                    src="../../public/workspace.jpg"
+                    src={workspace as string}
                     alt="Developer workspace"
                     className="w-full h-full object-cover"
                   />
