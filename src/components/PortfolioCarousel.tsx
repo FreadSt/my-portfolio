@@ -4,85 +4,16 @@ import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import img1 from "../../public/fread-e-commerce.png"
-import img2 from "../../public/aonu.jpg"
-import img3 from "../../public/magic-mail.png"
+import { Project } from "@/lib/types.ts";
 
-interface GalleryImage {
-  src: string;
-  href?: string;
+interface PortfolioCarouselProps {
+  projects: Project[]
 }
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  liveUrl?: string;
-  githubUrl?: string;
-  category: string;
-  isGallery?: boolean;
-  galleryImages?: GalleryImage[];
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "E-Commerce Platform",
-    description:
-      "A modern, responsive e-commerce platform built with React and Node.js, featuring real-time inventory management and secure payment processing.",
-    image: img1 as string,
-    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/FreadSt/fread.",
-    category: "Web Development",
-  },
-  {
-    id: 2,
-    title: "Mobile Video Platform App",
-    description:
-      "Mobile React Native and Expo full-stack application featured to upload and viewing videos application",
-    image: img2 as string,
-    technologies: ["React Native", "TypeScript", "AppWrite", "Expo"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com/FreadSt/aonu",
-    category: "Mobile Development",
-  },
-  {
-    id: 3,
-    title: "AI-Powered Email Generator",
-    description:
-      "An intelligent email generate application that provides real-time mails using AI Api's for business or just for fun.",
-    image: img3 as string,
-    technologies: ["Next.js", "framer-motion", "Typescript", "ChatGPT API"],
-    liveUrl: "https://magicmail.app/",
-    githubUrl:
-      "https://github.com/FreadSt/AI-email-generator/tree/main/magic-mail-frontend-dev",
-    category: "Data Science",
-  },
-  {
-    id: 4,
-    title: "Landing Page Gallery",
-    description:
-      "A collection of beautifully crafted marketing landing pages demonstrating responsive design, clean UI/UX and animation techniques.",
-    image: "/landing-gallery-preview.png",
-    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
-    category: "Web Design",
-    liveUrl: "https://github.com/FreadSt/landing-gallery",
-    githubUrl: "https://github.com/FreadSt/landing-gallery",
-    isGallery: true,
-    galleryImages: [
-      { src: "/gallery/landing1.png", href: "https://sunrise-flowers.vercel.app/" },
-      { src: "/gallery/landing2.png", href: "https://dinolanding5-5.vercel.app/" },
-      { src: "/gallery/landing3.png", href: "https://landing3.example.com" },
-      { src: "/gallery/landing4.png", href: "https://landing4.example.com" },
-    ],
-  },
-];
-
-const PortfolioCarousel = () => {
+const PortfolioCarousel = ({projects}: PortfolioCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  console.log(projects, 'projects')
 
   const next = useCallback(() => {
     setCurrentIndex((prevIndex) =>
@@ -147,7 +78,7 @@ const PortfolioCarousel = () => {
                         <img
                           src={src}
                           alt={`Landing ${idx + 1}`}
-                          className="w-full h-64 object-cover rounded-xl shadow-sm group-hover:scale-[1.03] transition-transform"
+                          className="w-full h-full object-cover rounded-xl shadow-sm group-hover:scale-[1.03] transition-transform"
                         />
                       </a>
                     ))}
@@ -179,7 +110,7 @@ const PortfolioCarousel = () => {
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {projects[currentIndex].technologies.map((tech) => (
-                    <Badge key={tech} variant="outline" className="text-xs">
+                    <Badge variant="outline" className="text-xs">
                       {tech}
                     </Badge>
                   ))}

@@ -15,74 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-
-const socials = [
-  {
-    linked: Linkedin,
-    link: "https://www.linkedin.com/in/freadstr/"
-  },
-  {
-    linked: Github,
-    link: "https://github.com/FreadSt"
-  },
-]
-
-const skills = [
-  "React",
-  "TypeScript",
-  "Next.js",
-  "Node.js",
-  "Docker",
-  "MongoDB",
-  "GraphQL",
-  "Tailwind CSS",
-  "Figma",
-];
-
-const services = [
-  {
-    title: "Web Development",
-    description:
-      "Building responsive, performant web applications with modern technologies and best practices.",
-    features: [
-      "React & Next.js",
-      "TypeScript",
-      "Performance Optimization",
-      "SEO & Accessibility",
-    ],
-  },
-  {
-    title: "Mobile Development",
-    description:
-      "Creating native and cross-platform mobile applications for iOS and Android.",
-    features: [
-      "React Native",
-      "Expo",
-      "Native iOS/Android",
-    ],
-  },
-  {
-    title: "API & Backend Integration",
-    description:
-      "While I'm a frontend-first developer, I can design and integrate REST APIs, configure backends and deploy fullstack apps.",
-    features: [
-      "Node.js & Express",
-      "Firebase / Appwrite",
-      "API integration & deployment",
-    ],
-  },
-  {
-    title: "Design to Code",
-    description:
-      "I translate Figma designs into real, usable interfaces — matching layout and behavior exactly, down to the last pixel.",
-    features: [
-      "Figma → Code conversion",
-      "Design Systems & Components",
-      "Accessibility (a11y)",
-      "Mobile-first approach",
-    ],
-  },
-];
+import { ProjectsArr, services, skills, socials } from "@/lib/data.ts";
 
 const Index = () => {
 
@@ -127,7 +60,7 @@ const Index = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <Badge variant="outline" className="text-sm px-4 py-2">
-              Available for new projects
+              Available for new opportunities
             </Badge>
           </motion.div>
 
@@ -174,17 +107,19 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            {socials.map((icon, index) => (
-              <motion.a
-                key={index}
-                href={icon.link}
-                className="text-muted-foreground hover:text-foreground transition-colors p-2"
-                whileHover={{ scale: 1.1, y: -2 }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                <icon.linked className="w-6 h-6" /> {/* Используем иконку из объекта */}
-              </motion.a>
-            ))}
+            <>
+              {socials.map((icon, index) => (
+                <motion.a
+                  key={index}
+                  href={icon.link}
+                  className="text-muted-foreground hover:text-foreground transition-colors p-2"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <icon.linked className="w-6 h-6" /> {/* Используем иконку из объекта */}
+                </motion.a>
+              ))}
+            </>
           </motion.div>
         </motion.div>
 
@@ -331,7 +266,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <PortfolioCarousel />
+            <PortfolioCarousel  projects={ProjectsArr}/>
           </motion.div>
         </div>
       </section>

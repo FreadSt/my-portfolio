@@ -5,88 +5,18 @@ import ParallaxSection from "@/components/ParallaxSection";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
-import img1 from "../../public/fread-e-commerce.png"
 import prev1 from "../../public/e-commerce-code.png"
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  longDescription: string;
-  image: string;
-  technologies: string[];
-  liveUrl?: string;
-  githubUrl?: string;
-  category: string;
-  year: string;
-  role: string;
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "E-Commerce Platform",
-    description: "Modern, responsive e-commerce solution",
-    longDescription:
-      "A comprehensive e-commerce platform built with MERN, featuring real-time inventory management, secure payment processing with Stripe, and an intuitive admin dashboard. The platform handles thousands of products and processes hundreds of orders daily with 99.9% uptime.",
-    image: img1 as string,
-    technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    category: "Web Development",
-    year: "2024",
-    role: "Full-Stack Developer",
-  },
-  {
-    id: 2,
-    title: "Mobile Banking App",
-    description: "Secure financial management on mobile",
-    longDescription:
-      "A cutting-edge mobile banking application featuring biometric authentication, real-time transaction processing, and comprehensive financial management tools. Built with React Native and integrated with multiple banking APIs to provide seamless user experience across iOS and Android platforms.",
-    image: "/api/placeholder/1200/800",
-    technologies: ["React Native", "TypeScript", "Firebase", "REST APIs"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    category: "Mobile Development",
-    year: "2023",
-    role: "Mobile Developer",
-  },
-  {
-    id: 3,
-    title: "AI Analytics Dashboard",
-    description: "Intelligent business insights platform",
-    longDescription:
-      "An AI-powered analytics dashboard that provides real-time insights and predictive analytics for business decision making. Features machine learning algorithms for trend analysis, custom data visualizations, and automated reporting systems that help businesses optimize their operations.",
-    image: "/api/placeholder/1200/800",
-    technologies: ["Next.js", "Python", "TensorFlow", "D3.js", "Docker"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    category: "Data Science",
-    year: "2023",
-    role: "Full-Stack Developer",
-  },
-  {
-    id: 4,
-    title: "Social Media Management",
-    description: "Complete social media automation suite",
-    longDescription:
-      "A comprehensive social media management platform with advanced scheduling capabilities, detailed analytics, and multi-platform posting. The tool integrates with major social networks and provides AI-powered content suggestions, helping businesses maintain consistent online presence.",
-    image: "/api/placeholder/1200/800",
-    technologies: ["Vue.js", "Express", "MongoDB", "Redis", "Bull Queue"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    category: "SaaS",
-    year: "2022",
-    role: "Lead Developer",
-  },
-];
+import { ProjectsArr } from "@/lib/data.ts";
+import { Project } from "@/lib/types.ts";
 
 const ProjectSection = ({
                           project,
                           index,
+                          key,
                         }: {
-  project: Project;
-  index: number;
+  project: Project,
+  index: number,
+  key?: number
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -105,11 +35,26 @@ const ProjectSection = ({
       {/* Parallax Background */}
       <motion.div className="absolute inset-0 w-full h-full" style={{ y }}>
         <div className="relative w-full h-full">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover backdrop-filter"
-          />
+          {project.isGallery && project.galleryImages ? (
+            <div className="grid grid-cols-2 grid-rows-2 w-full h-full">
+              {project.galleryImages.map((item, i) => (
+                <a key={i} href={item.href} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={item.src}
+                    alt={`Gallery ${i + 1}`}
+                    className="w-full h-full object-cover hover:opacity-80 transition-opacity"
+                  />
+                </a>
+              ))}
+            </div>
+          ) : (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+          )}
+
           <div className="absolute inset-0 bg-black/50" />
         </div>
       </motion.div>
@@ -131,9 +76,6 @@ const ProjectSection = ({
               <Badge variant="secondary" className="mb-2">
                 {project.category}
               </Badge>
-              <div className="text-sm text-white/70">
-                {project.year} • {project.role}
-              </div>
             </div>
 
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -141,15 +83,14 @@ const ProjectSection = ({
             </h2>
 
             <p className="text-xl text-white/90 mb-8 leading-relaxed">
-              {project.longDescription}
+              {project.description}
             </p>
 
             <div className="flex flex-wrap gap-2 mb-8">
               {project.technologies.map((tech) => (
                 <Badge
-                  key={tech}
                   variant="outline"
-                  className="border-white/30 text-white"
+                  className="border-white/60 text-white border-[2px]"
                 >
                   {tech}
                 </Badge>
@@ -166,7 +107,7 @@ const ProjectSection = ({
               {project.githubUrl && (
                 <Button
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white hover:text-black"
+                  className="border-white/30 text-black hover:bg-white hover:text-black"
                 >
                   <Github className="w-4 h-4 mr-2" />
                   View Code
@@ -190,9 +131,6 @@ const ProjectSection = ({
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
-                  <div className="text-white/50 text-sm">
-                    Project #{index + 1}
-                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -205,7 +143,7 @@ const ProjectSection = ({
       </motion.div>
 
       {/* Scroll Indicator */}
-      {index < projects.length - 1 && (
+      {index < ProjectsArr.length - 1 && (
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
           animate={{ y: [0, 10, 0] }}
@@ -279,7 +217,7 @@ const Work = () => {
       </section>
 
       {/* Project Sections */}
-      {projects.map((project, index) => (
+      {ProjectsArr.map((project, index) => (
         <ProjectSection key={project.id} project={project} index={index} />
       ))}
 

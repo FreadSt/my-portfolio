@@ -51,13 +51,13 @@ const About = () => {
 
   const techStack = [
     { name: "React", icon: "⚛️", years: "3+" },
-    { name: "TypeScript", icon: "📘", years: "3+" },
-    { name: "Next.js", icon: "🔺", years: "2+" },
-    { name: "Tailwind CSS", icon: "🎨", years: "3+" },
-    { name: "Framer Motion", icon: "🎬", years: "2+" },
-    { name: "Node.js", icon: "🟢", years: "2+" },
-    { name: "GraphQL", icon: "🔗", years: "2+" },
-    { name: "AWS", icon: "☁️", years: "1+" },
+    { name: "TypeScript", icon: "📘", years: "2+" },
+    { name: "Next.js", icon: "🔺", years: "1.5+" },
+    { name: "Tailwind CSS", icon: "🎨", years: "1.5+" },
+    { name: "Framer Motion", icon: "🎬", years: "1+" },
+    { name: "Node.js", icon: "🟢", years: "1+" },
+    { name: "GraphQL", icon: "🔗", years: "1+" },
+    { name: "Vercel", icon: "☁️", years: "3+" },
   ];
 
   const achievements = [
@@ -213,23 +213,25 @@ const About = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              {["React", "TypeScript", "Next.js", "Tailwind"].map(
-                (tech, index) => (
-                  <motion.div
-                    key={tech}
-                    className="px-4 py-2 bg-muted/50 backdrop-blur-sm rounded-full text-sm font-medium"
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: index * 0.2,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    {tech}
-                  </motion.div>
-                ),
-              )}
+              <>
+                {["React", "TypeScript", "Next.js", "Tailwind"].map(
+                  (tech, index) => (
+                    <motion.div
+                      key={tech}
+                      className="px-4 py-2 bg-muted/50 backdrop-blur-sm rounded-full text-sm font-medium"
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: index * 0.2,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      {tech}
+                    </motion.div>
+                  ),
+                )}
+              </>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -477,7 +479,7 @@ const About = () => {
                       />
                       <span className="relative z-10 flex items-center justify-center">
                         <Coffee className="w-5 h-5 mr-2" />
-                        Let's Work Together
+                        Connect via LinkedIn
                         <motion.div
                           className="ml-2"
                           animate={{ x: [0, 5, 0] }}
