@@ -63,31 +63,31 @@ const About = () => {
   const achievements = [
     {
       icon: <Award className="w-6 h-6" />,
-      title: "Performance Optimization",
+      title: "83% Faster Load",
       description:
-        "Improved web app load times by 60% through code splitting and optimization",
-      metric: "60% faster",
+        "Suggested and implemented a performance optimization for an AI email service, reducing load time by 83%",
+      metric: "83% faster",
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Team Leadership",
       description:
-        "Led a team of 4 developers in building scalable React applications",
-      metric: "4 developers",
+        "Led a team of 6 engineers in developing Neptunes Sushi website from scratch to launch",
+      metric: "6 devs",
     },
     {
       icon: <Globe className="w-6 h-6" />,
-      title: "Global Reach",
+      title: "Investor Interest",
       description:
-        "Built applications serving 100K+ users across 15+ countries",
-      metric: "100K+ users",
+        "Launched an AI Email Generator that attracted multiple investor inquiries",
+      metric: "Investor-ready",
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
-      title: "Business Impact",
+      title: "Client-Facing Delivery",
       description:
-        "Increased client conversion rates by 35% through UX improvements",
-      metric: "35% increase",
+        "Delivered multiple client projects on time under tight deadlines, aligning with all specifications",
+      metric: "100% delivery",
     },
   ];
 

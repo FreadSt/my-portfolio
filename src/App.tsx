@@ -12,6 +12,16 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { track } from "@vercel/analytics";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+
+  return null;
+}
+
 function AnalyticsTracker() {
   const location = useLocation();
 
@@ -26,13 +36,13 @@ function AnalyticsTracker() {
 const queryClient = new QueryClient();
 
 
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <AnalyticsTracker />
         <Routes>
           <Route path="/" element={<Index />} />
