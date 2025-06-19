@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import emailjs from "@emailjs/browser";
 
 interface FormData {
   name: string;
@@ -23,6 +24,7 @@ const ContactForm = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -38,23 +40,40 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const result = await emailjs.send(
+        "service_yfracbb", // замените на свой
+        "template_hjypvh8", // замените на свой
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          company: formData.company,
+          message: formData.message,
+        },
+        "Z9T9c4TGtpcAEIrXq" // замените на свой
+      );
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      console.log("Email sent:", result.text);
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("Email send error:", error);
+      setHasError(true);
+    } finally {
+      setIsSubmitting(false);
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        message: "",
-      });
-    }, 3000);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setHasError(false);
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          message: "",
+        });
+      }, 3000);
+    }
   };
+
 
   if (isSubmitted) {
     return (
@@ -72,13 +91,38 @@ const ContactForm = () => {
         >
           <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
         </motion.div>
-        <h3 className="text-2xl font-semibold mb-2">Message Sent!</h3>
+        <h3 className="text-2xl font-semibold mb-2">Seems i've got a challenge, thank you!</h3>
         <p className="text-muted-foreground">
-          Thank you for reaching out. I'll get back to you soon.
+          Thank you for reaching out. I'll answer you tomorrow (i promise)
         </p>
       </motion.div>
     );
   }
+
+  if (hasError) {
+    return (
+      <motion.div
+        className="text-center py-12"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div
+          className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/20 mb-4"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+        >
+          <CheckCircle className="w-8 h-8 text-red-600 dark:text-red-400" />
+        </motion.div>
+        <h3 className="text-2xl font-semibold mb-2">Failed to Send</h3>
+        <p className="text-muted-foreground">
+          It seems it didn't work, try again, but not too often.
+        </p>
+      </motion.div>
+    );
+  }
+
 
   return (
     <motion.form
