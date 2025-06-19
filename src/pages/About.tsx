@@ -512,28 +512,6 @@ const About = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Floating Action Elements */}
-      <motion.div
-        className="fixed bottom-8 right-8 z-40"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 2, duration: 0.5 }}
-      >
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Button
-            size="icon"
-            className="w-14 h-14 rounded-full shadow-lg bg-foreground text-background hover:shadow-xl transition-shadow"
-          >
-            <ArrowRight className="w-6 h-6 -rotate-90" />
-          </Button>
-        </motion.div>
-      </motion.div>
     </div>
   );
 };

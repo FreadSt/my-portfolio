@@ -117,7 +117,7 @@ const Index = () => {
                   whileHover={{ scale: 1.1, y: -2 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <icon.linked className="w-6 h-6" /> {/* Используем иконку из объекта */}
+                  <icon.linked className="w-6 h-6" />
                 </motion.a>
               ))}
             </>
@@ -312,14 +312,16 @@ const Index = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-2xl font-bold mb-4 md:mb-0">Portfolio</div>
             <div className="flex space-x-6">
-              {[Github, Linkedin, Twitter].map((Icon, index) => (
-                <a
+              {socials.map((icon, index) => (
+                <motion.a
                   key={index}
-                  href="#"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  href={icon.link}
+                  className="text-muted-foreground hover:text-foreground transition-colors p-2"
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <Icon className="w-5 h-5" />
-                </a>
+                  <icon.linked className="w-6 h-6" />
+                </motion.a>
               ))}
             </div>
           </div>
