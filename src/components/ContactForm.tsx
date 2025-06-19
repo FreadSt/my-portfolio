@@ -45,8 +45,8 @@ const ContactForm = () => {
         "service_yfracbb", // замените на свой
         "template_hjypvh8", // замените на свой
         {
-          from_name: formData.name,
-          from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
           company: formData.company,
           message: formData.message,
         },
