@@ -8,8 +8,24 @@ import About from "./pages/About";
 import Work from "./pages/Work";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { track } from "@vercel/analytics";
+
+function AnalyticsTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    track('page_view');
+  }, [location.pathname]);
+
+  return null;
+}
+
 
 const queryClient = new QueryClient();
+
+
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -17,6 +33,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <AnalyticsTracker />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
