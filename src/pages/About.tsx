@@ -469,30 +469,38 @@ const About = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Button
-                      size="lg"
-                      className="w-full group relative overflow-hidden"
+                    <a
+                      href="https://www.linkedin.com/in/freadstr/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full"
                     >
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        initial={false}
-                      />
-                      <span className="relative z-10 flex items-center justify-center">
-                        <Coffee className="w-5 h-5 mr-2" />
-                        Connect via LinkedIn
+                      <Button
+                        size="lg"
+                        className="w-full group relative overflow-hidden"
+                      >
                         <motion.div
-                          className="ml-2"
-                          animate={{ x: [0, 5, 0] }}
-                          transition={{
-                            duration: 1.5,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                        >
-                          <ArrowRight className="w-5 h-5" />
-                        </motion.div>
-                      </span>
-                    </Button>
+                          className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          initial={false}
+                        />
+                        <span className="relative z-10 flex items-center justify-center">
+                          <Coffee className="w-5 h-5 mr-2" />
+                          Connect via LinkedIn
+                          <motion.div
+                            className="ml-2"
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{
+                              duration: 1.5,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                          >
+                            <ArrowRight className="w-5 h-5" />
+                          </motion.div>
+                        </span>
+                      </Button>
+                    </a>
+
                   </motion.div>
 
                   <p className="text-sm text-muted-foreground mt-4">
