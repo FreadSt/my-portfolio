@@ -4,6 +4,14 @@ import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import img1 from "../../public/fread-e-commerce.png"
+import img2 from "../../public/aonu.jpg"
+import img3 from "../../public/magic-mail.png"
+
+interface GalleryImage {
+  src: string;
+  href?: string;
+}
 
 interface Project {
   id: number;
@@ -14,6 +22,8 @@ interface Project {
   liveUrl?: string;
   githubUrl?: string;
   category: string;
+  isGallery?: boolean;
+  galleryImages?: GalleryImage[];
 }
 
 const projects: Project[] = [
@@ -22,44 +32,52 @@ const projects: Project[] = [
     title: "E-Commerce Platform",
     description:
       "A modern, responsive e-commerce platform built with React and Node.js, featuring real-time inventory management and secure payment processing.",
-    image: "/api/placeholder/600/400",
-    technologies: ["React", "Node.js", "PostgreSQL", "Stripe"],
+    image: img1 as string,
+    technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/FreadSt/fread.",
     category: "Web Development",
   },
   {
     id: 2,
-    title: "Mobile Banking App",
+    title: "Mobile Video Platform App",
     description:
-      "A secure mobile banking application with biometric authentication, real-time transactions, and comprehensive financial management tools.",
-    image: "/api/placeholder/600/400",
-    technologies: ["React Native", "TypeScript", "Firebase"],
+      "Mobile React Native and Expo full-stack application featured to upload and viewing videos application",
+    image: img2 as string,
+    technologies: ["React Native", "TypeScript", "AppWrite", "Expo"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/FreadSt/aonu",
     category: "Mobile Development",
   },
   {
     id: 3,
     title: "AI-Powered Email Generator",
     description:
-      "An intelligent analytics dashboard that provides real-time insights and predictive analytics for business decision making.",
-    image: "/api/placeholder/600/400",
-    technologies: ["Next.js", "Python", "TensorFlow", "D3.js"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
+      "An intelligent email generate application that provides real-time mails using AI Api's for business or just for fun.",
+    image: img3 as string,
+    technologies: ["Next.js", "framer-motion", "Typescript", "ChatGPT API"],
+    liveUrl: "https://magicmail.app/",
+    githubUrl:
+      "https://github.com/FreadSt/AI-email-generator/tree/main/magic-mail-frontend-dev",
     category: "Data Science",
   },
   {
     id: 4,
-    title: "Social Media Management Tool",
+    title: "Landing Page Gallery",
     description:
-      "A comprehensive social media management platform with scheduling, analytics, and multi-platform posting capabilities.",
-    image: "/api/placeholder/600/400",
-    technologies: ["Vue.js", "Express", "MongoDB", "Redis"],
-    liveUrl: "https://example.com",
-    githubUrl: "https://github.com",
-    category: "SaaS",
+      "A collection of beautifully crafted marketing landing pages demonstrating responsive design, clean UI/UX and animation techniques.",
+    image: "/landing-gallery-preview.png",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
+    category: "Web Design",
+    liveUrl: "https://github.com/FreadSt/landing-gallery",
+    githubUrl: "https://github.com/FreadSt/landing-gallery",
+    isGallery: true,
+    galleryImages: [
+      { src: "/gallery/landing1.png", href: "https://sunrise-flowers.vercel.app/" },
+      { src: "/gallery/landing2.png", href: "https://dinolanding5-5.vercel.app/" },
+      { src: "/gallery/landing3.png", href: "https://landing3.example.com" },
+      { src: "/gallery/landing4.png", href: "https://landing4.example.com" },
+    ],
   },
 ];
 
@@ -96,20 +114,51 @@ const PortfolioCarousel = () => {
             transition={{ duration: 0.5, ease: "easeInOut" }}
           >
             {/* Project Image */}
-            <div className="relative overflow-hidden">
-              <motion.img
-                src={projects[currentIndex].image}
-                alt={projects[currentIndex].title}
-                className="w-full h-full object-cover"
-                initial={{ scale: 1.1 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.5 }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent lg:hidden" />
-            </div>
+            <>
+              {!projects[currentIndex].isGallery ? (
+                <div className="relative overflow-hidden">
+                  <motion.img
+                    src={projects[currentIndex].image}
+                    alt={projects[currentIndex].title}
+                    className="w-full h-full object-cover"
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent lg:hidden" />
+                </div>
+              ) : (
+                <motion.div
+                  className="grid grid-cols-2 gap-2 p-4 bg-muted"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <>
+                    {(projects[currentIndex].galleryImages ?? []).map(({ src, href }, idx) => (
+                      <a
+                        key={idx}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block group"
+                      >
+                        <img
+                          src={src}
+                          alt={`Landing ${idx + 1}`}
+                          className="w-full h-64 object-cover rounded-xl shadow-sm group-hover:scale-[1.03] transition-transform"
+                        />
+                      </a>
+                    ))}
+                  </>
+                </motion.div>
+              )}
+            </>
 
             {/* Project Details */}
-            <div className="absolute bottom-0 left-0 right-0 lg:relative lg:bottom-auto p-8 lg:p-12 text-white lg:text-foreground bg-gradient-to-t from-black/80 to-black/20 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none">
+            <div
+              className="absolute bottom-0 left-0 right-0 lg:relative lg:bottom-auto p-8 lg:p-12 text-white lg:text-foreground bg-gradient-to-t from-black/80 to-black/20 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
