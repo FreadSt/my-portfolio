@@ -30,8 +30,8 @@ export interface Value {
 }
 
 export const techStack: TechItem[] = [
-  { name: "React", icon: "⚛️", years: "3+" },
-  { name: "TypeScript", icon: "📘", years: "2+" },
+  { name: "React", icon: "⚛️", years: "4+" },
+  { name: "TypeScript", icon: "📘", years: "3+" },
   { name: "Next.js", icon: "🔺", years: "1.5+" },
   { name: "Tailwind CSS", icon: "🎨", years: "1.5+" },
   { name: "Framer Motion", icon: "🎬", years: "1+" },
@@ -95,4 +95,4 @@ export const values: Value[] = [
   },
 ];
 
-export const techNames = ["React", "TypeScript", "Next.js", "Tailwind"]; 
+export const techNames = ["React", "TypeScript", "Next.js", "Tailwind"];
