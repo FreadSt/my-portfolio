@@ -27,6 +27,18 @@ const ProjectSection = ({
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
+  const handleNavLive = () => {
+    if (project.liveUrl) {
+      window.open(project.liveUrl, "_blank");
+    }
+  };
+
+  const handleNavGit = () => {
+    if (project.githubUrl) {
+      window.open(project.githubUrl, "_blank");
+    }
+  };
+
   return (
     <section
       ref={ref}
@@ -99,15 +111,16 @@ const ProjectSection = ({
 
             <div className="flex gap-4">
               {project.liveUrl && (
-                <Button variant="default" className="group">
-                  <ExternalLink className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                <Button variant="default" className="group" onClick={handleNavLive}>
+                  <ExternalLink className="z-5 w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
                   Live Demo
                 </Button>
               )}
               {project.githubUrl && (
                 <Button
+                  onClick={handleNavGit}
                   variant="outline"
-                  className="border-white/30 text-black hover:bg-white hover:text-black"
+                  className="z-5 border-white/30 text-black hover:bg-white hover:text-black"
                 >
                   <Github className="w-4 h-4 mr-2" />
                   View Code

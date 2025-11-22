@@ -14,7 +14,9 @@ export const ProjectsArr: Project[] = [
     id: 1,
     title: "E-Commerce Platform",
     description:
-      "A modern, responsive e-commerce platform built with React and Node.js, featuring real-time inventory management and secure payment processing.",
+      "A modern, responsive e-commerce platform built with React and Node.js, " +
+      "featuring real-time inventory management and secure payment processing. " +
+      "Project has been restored and additionally featured by: chat, admin panel, deploying, stripe connect and much more described in README2.0.md of github",
     image: img1 as string,
     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     githubUrl: "https://github.com/FreadSt/fread-e-commerce",
