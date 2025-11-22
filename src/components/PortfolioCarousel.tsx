@@ -13,6 +13,20 @@ interface PortfolioCarouselProps {
 const PortfolioCarousel = ({projects}: PortfolioCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const handleNavLive = () => {
+    const url = projects[currentIndex].liveUrl;
+    if (url) {
+      window.open(url, "_blank");
+    }
+  };
+
+  const handleNavGit = () => {
+    const url = projects[currentIndex].githubUrl;
+    if (url) {
+      window.open(url, "_blank");
+    }
+  };
+
   console.log(projects, 'projects')
 
   const next = useCallback(() => {
@@ -118,16 +132,15 @@ const PortfolioCarousel = ({projects}: PortfolioCarouselProps) => {
                   ))}
                 </div>
 
-                {/* Action Buttons */}
                 <div className="flex gap-4">
                   {projects[currentIndex].liveUrl && (
-                    <Button variant="default" size="sm" className="group">
-                      <ExternalLink className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                    <Button variant="default" size="sm" className="group" onClick={handleNavLive}>
+                      <ExternalLink className="z-5 w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
                       Live Demo
                     </Button>
                   )}
                   {projects[currentIndex].githubUrl && (
-                    <Button variant="outline" size="sm" className="group">
+                    <Button variant="outline" size="sm" className="group" onClick={handleNavGit}>
                       <Github className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
                       View Code
                     </Button>
