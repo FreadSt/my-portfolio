@@ -1,6 +1,7 @@
 import img1 from "../../public/fread-e-commerce.jpg";
 import img2 from "../../public/aonu.jpg";
 import img3 from "../../public/magic-mail.png";
+import img4 from "../../public/macbook-landing.jpg";
 import lan1 from "@/../public/dino-landing.jpg"
 import lan2 from "@/../public/sunrise-f-landing.jpg"
 import lan3 from "@/../public/dino-2-land.jpg"
@@ -32,6 +33,17 @@ export const ProjectsArr: Project[] = [
     technologies: ["React Native", "TypeScript", "AppWrite", "Expo"],
     githubUrl: "https://github.com/FreadSt/aonu",
     category: "Mobile Development",
+  },
+  {
+    id: 19,
+    title: "Macbook Three.js + GSAP landing",
+    description:
+      "Incredible designed MacBook landing built with React, GSAP and Tree.js ",
+    image: img4 as string,
+    technologies: ["React", "TypeScript", "GSAP", "Tailwind.css", "Three.js"],
+    githubUrl: "https://github.com/FreadSt/gsap_app",
+    liveUrl: "https://macbook-animated-landing.vercel.app/",
+    category: "3D Animations",
   },
   {
     id: 3,
