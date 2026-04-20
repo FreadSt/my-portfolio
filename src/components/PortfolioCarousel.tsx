@@ -125,7 +125,7 @@ const PortfolioCarousel = ({projects}: PortfolioCarouselProps) => {
                 <div className="flex flex-wrap gap-2 mb-6">
                   {projects[currentIndex].technologies.map((tech, index) => (
                     <div key={index}>
-                      <Badge variant="outline" className="text-xs">
+                      <Badge variant="outline" className="text-xs text-white">
                         {tech}
                       </Badge>
                     </div>
@@ -141,8 +141,8 @@ const PortfolioCarousel = ({projects}: PortfolioCarouselProps) => {
                   )}
                   {projects[currentIndex].githubUrl && (
                     <Button variant="outline" size="sm" className="group" onClick={handleNavGit}>
-                      <Github className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                      View Code
+                      <Github className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform text-black" />
+                      <span className='text-black'>View Code</span>
                     </Button>
                   )}
                 </div>
