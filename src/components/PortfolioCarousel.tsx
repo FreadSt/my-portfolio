@@ -27,19 +27,17 @@ const PortfolioCarousel = ({projects}: PortfolioCarouselProps) => {
     }
   };
 
-  console.log(projects, 'projects')
-
   const next = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex === projects.length - 1 ? 0 : prevIndex + 1,
     );
-  }, []);
+  }, [projects.length]);
 
   const previous = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? projects.length - 1 : prevIndex - 1,
     );
-  }, []);
+  }, [projects.length]);
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index);

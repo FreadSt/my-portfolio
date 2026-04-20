@@ -1,22 +1,18 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Navigation from "@/components/Navigation";
-import ParallaxSection from "@/components/ParallaxSection";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, ArrowRight } from "lucide-react";
-import prev1 from "../../public/e-commerce-code.png"
 import { ProjectsArr } from "@/lib/data.ts";
 import { Project } from "@/lib/types.ts";
 
 const ProjectSection = ({
                           project,
                           index,
-                          key,
                         }: {
   project: Project,
   index: number,
-  key?: number
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -101,6 +97,7 @@ const ProjectSection = ({
             <div className="flex flex-wrap gap-2 mb-8">
               {project.technologies.map((tech) => (
                 <Badge
+                  key={`${project.id}-${tech}`}
                   variant="outline"
                   className="border-white/60 text-white border-[2px]"
                 >
@@ -147,7 +144,7 @@ const ProjectSection = ({
                 </div>
 
                 <div className="space-y-4">
-                  <img src={prev1 as string} alt=""/>
+                  <img src="/e-commerce-code.png" alt="E-commerce code preview" />
                 </div>
               </div>
             </div>

@@ -1,12 +1,3 @@
-import img1 from "../../public/fread-e-commerce.jpg";
-import img2 from "../../public/aonu.jpg";
-import img3 from "../../public/magic-mail.png";
-import img4 from "@/../public/macbook-landing.jpg";
-import lan1 from "@/../public/dino-landing.jpg"
-import lan2 from "@/../public/sunrise-f-landing.jpg"
-import lan3 from "@/../public/dino-2-land.jpg"
-import lan4 from "@/../public/wimble.jpg"
-
 import { Project } from "@/lib/types.ts";
 import { Github, Linkedin } from "lucide-react";
 
@@ -18,7 +9,7 @@ export const ProjectsArr: Project[] = [
       "A modern, responsive e-commerce platform built with React and Node.js, " +
       "featuring real-time inventory management and secure payment processing. " +
       "Project has been restored and additionally featured by: chat, admin panel, deploying, stripe connect and much more described in README2.0.md of github",
-    image: img1 as string,
+    image: "/fread-e-commerce.jpg",
     technologies: ["React", "Node.js", "MongoDB", "Stripe"],
     githubUrl: "https://github.com/FreadSt/fread-e-commerce",
     liveUrl: "https://fread-e-commerce.vercel.app/",
@@ -29,7 +20,7 @@ export const ProjectsArr: Project[] = [
     title: "Mobile Video Platform App",
     description:
       "Mobile React Native and Expo full-stack application featured to upload and viewing videos application",
-    image: img2 as string,
+    image: "/aonu.jpg",
     technologies: ["React Native", "TypeScript", "AppWrite", "Expo"],
     githubUrl: "https://github.com/FreadSt/aonu",
     category: "Mobile Development",
@@ -39,7 +30,7 @@ export const ProjectsArr: Project[] = [
     title: "Macbook Three.js + GSAP landing",
     description:
       "Incredible designed MacBook landing built with React, GSAP and Tree.js ",
-    image: img4 as string,
+    image: "/macbook-landing.jpg",
     technologies: ["React", "TypeScript", "GSAP", "Tailwind.css", "Three.js"],
     githubUrl: "https://github.com/FreadSt/gsap_app",
     liveUrl: "https://macbook-animated-landing.vercel.app/",
@@ -50,7 +41,7 @@ export const ProjectsArr: Project[] = [
     title: "AI-Powered Email Generator",
     description:
       "An intelligent email generate application that provides real-time mails using AI Api's for business or just for fun.",
-    image: img3 as string,
+    image: "/magic-mail.png",
     technologies: ["Next.js", "framer-motion", "Typescript", "ChatGPT API"],
     liveUrl: "https://magicmail.app/",
     category: "Data Science",
@@ -60,15 +51,15 @@ export const ProjectsArr: Project[] = [
     title: "Landing Page Gallery",
     description:
       "A collection of beautifully crafted marketing landing pages demonstrating responsive design, clean UI/UX and animation techniques.",
-    image: "/landing-gallery-preview.png",
+    image: "/placeholder.svg",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "TypeScript"],
     category: "Web Design",
     isGallery: true,
     galleryImages: [
-      { src: lan1 as string, href: "https://dinolanding5-5.vercel.app/" },
-      { src: lan2 as string, href: "https://sunrise-flowers.vercel.app/" },
-      { src: lan3 as string, href: "https://landing3.example.com" },
-      { src: lan4 as string, href: "https://wimble.agency/" },
+      { src: "/dino-landing.jpg", href: "https://dinolanding5-5.vercel.app/" },
+      { src: "/sunrise-f-landing.jpg", href: "https://sunrise-flowers.vercel.app/" },
+      { src: "/dino-2-land.jpg", href: "https://landing3.example.com" },
+      { src: "/wimble.jpg", href: "https://wimble.agency/" },
     ],
   },
 ];

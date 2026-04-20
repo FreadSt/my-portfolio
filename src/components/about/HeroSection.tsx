@@ -14,24 +14,18 @@ const HeroSection = ({ techNames }: HeroSectionProps) => {
     offset: ["start start", "end start"],
   });
 
-  // Memoize scroll transforms to prevent recalculation
-  const y = useMemo(() => useTransform(scrollYProgress, [0, 1], [0, 300]), [scrollYProgress]);
-  const opacity = useMemo(() => useTransform(scrollYProgress, [0, 0.7], [1, 0]), [scrollYProgress]);
-  const scale = useMemo(() => useTransform(scrollYProgress, [0, 1], [1, 1.1]), [scrollYProgress]);
+  // Framer Motion hooks must be called at the top-level (not inside useMemo).
+  const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
-  const springConfig = useMemo(() => ({ stiffness: 100, damping: 30, restDelta: 0.001 }), []);
-  const y1 = useMemo(() => useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 200]),
-    springConfig,
-  ), [scrollYProgress, springConfig]);
-  const y2 = useMemo(() => useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, -100]),
-    springConfig,
-  ), [scrollYProgress, springConfig]);
-  const y3 = useMemo(() => useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 150]),
-    springConfig,
-  ), [scrollYProgress, springConfig]);
+  const springConfig = useMemo(
+    () => ({ stiffness: 100, damping: 30, restDelta: 0.001 }),
+    [],
+  );
+  const y1 = useSpring(useTransform(scrollYProgress, [0, 1], [0, 200]), springConfig);
+  const y2 = useSpring(useTransform(scrollYProgress, [0, 1], [0, -100]), springConfig);
+  const y3 = useSpring(useTransform(scrollYProgress, [0, 1], [0, 150]), springConfig);
 
   // Memoize animation variants
   const heroAnimationVariants = useMemo(() => ({

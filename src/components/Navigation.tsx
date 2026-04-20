@@ -19,9 +19,9 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // useEffect(() => {
-  //   setIsOpen(false);
-  // }, [location]);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
 
   const navItems = [
     { name: "Home", href: "/" },

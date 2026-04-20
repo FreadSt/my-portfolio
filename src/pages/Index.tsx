@@ -3,9 +3,6 @@ import {
   ArrowDown,
   Download,
   Mail,
-  Github,
-  Linkedin,
-  Twitter,
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import ParallaxSection from "@/components/ParallaxSection";
@@ -16,11 +13,10 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { ProjectsArr, services, skills, socials } from "@/lib/data.ts";
-import workspace from "@/../public/workspace.jpg"
 
 const Index = () => {
 
-  const navitage = useNavigate()
+  const navigate = useNavigate()
 
   const handleDownload = () => {
     const link = document.createElement('a');
@@ -32,7 +28,7 @@ const Index = () => {
   };
 
   const handleContact = () => {
-    navitage('/contact')
+    navigate('/contact')
   }
 
   return (
@@ -161,12 +157,12 @@ const Index = () => {
                 of the development process with precision and creativity.
               </p>
               <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
+                {skills.map((skill, index) => (
                   <motion.div
                     key={skill}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, delay: Math.random() * 0.5 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
                     viewport={{ once: true }}
                   >
                     <Badge variant="secondary">{skill}</Badge>
@@ -179,7 +175,7 @@ const Index = () => {
               <div className="relative">
                 <div className="w-full h-96 bg-muted rounded-2xl overflow-hidden">
                   <img
-                    src={workspace as string}
+                    src="/workspace.jpg"
                     alt="Developer workspace"
                     className="w-full h-full object-cover"
                   />
