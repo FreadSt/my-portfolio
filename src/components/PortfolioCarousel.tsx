@@ -149,6 +149,7 @@ const PortfolioCarousel = ({projects}: PortfolioCarouselProps) => {
           </motion.div>
         </AnimatePresence>
 
+
         {/* Navigation Arrows */}
         <Button
           variant="outline"
